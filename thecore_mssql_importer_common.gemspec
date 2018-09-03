@@ -13,6 +13,18 @@ Gem::Specification.new do |s|
   s.summary = 'Thecorized thecore_mssql_importer_common' #     = "TODO: Summary of ThecoreMssqlImporterCommon."
   s.description = 'Thecorized thecore_mssql_importer_common full description.' # = "TODO: Description of ThecoreMssqlImporterCommon."
   s.license     = "MIT"
+  s.post_install_message = %q{
+Please remember to change the following params either using a migration or by editing via the GUI:
+
+Settings.ns('mssql_connector').username = 'sa'
+Settings.ns('mssql_connector').password = 'your_password'
+Settings.ns('mssql_connector').host = 'localhost'
+Settings.ns('mssql_connector').port = 1433
+Settings.ns('mssql_connector').database = 'test'
+Settings.ns('mssql_connector').table_read = 'test_table'
+Settings.ns('mssql_connector').latest_migration_code = ''
+
+}
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
@@ -20,4 +32,6 @@ Gem::Specification.new do |s|
 
   # s.add_development_dependency "sqlite3"
   s.add_dependency 'thecore', '~> 1.0'
+
+  s.add_dependency 'tiny_tds', '~> 2.1'
 end
