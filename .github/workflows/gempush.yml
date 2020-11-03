@@ -13,6 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+          repository: gabrieletassoni/thecore_mssql_importer_commmon
+    - run: |
+        git fetch --unshallow --tags
+        echo $?
+        git tag --list
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
